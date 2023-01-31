@@ -27,18 +27,16 @@ export default function FixedSizeList({
 }: FixedSizeListProps) {
   const curScrollPos = useScrollDetector(scrollTarget);
   const viewportSize = useViewportHeight();
-
-  const [renderItemCount, setRenderItemCount] = useState(itemData.length);
-  const [renderIndex, setRenderIndex] = useState({ renderStartIndex: 0, renderEndIndex: itemData.length });
+  const [renderIndex, setRenderIndex] = useState({
+    renderStartIndex: 0,
+    renderEndIndex: itemData.length,
+  });
   const [indexOffset, setIndexOffset] = useState(0);
   const [renderItem, setRenderItem] = useState<Array<any>>([]);
 
   useEffect(() => {
-    const newRenderItemCount = Math.ceil(viewportSize / itemHeight) + 1;
-    setRenderItemCount(newRenderItemCount);
-  }, [viewportSize]);
-
-  useEffect(() => {
+    if (viewportSize === 0) return;
+    const renderItemCount = Math.ceil(viewportSize / itemHeight) + 1;
     const startIndex = calculateStartIndex({ top, itemHeight, curScrollPos, viewportSize });
     const newRenderIndex = calculateRenderIndex({
       startIndex,
