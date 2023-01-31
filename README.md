@@ -9,8 +9,6 @@
 
 ---
 
-<br>
-
 ### 사용법
 
 ```jsx
@@ -24,3 +22,11 @@
 - `itemHeight`: 아이템의 높이
 - `itemData`: 렌더링 시 사용할 배열 형태의 데이터
 - `overscanCount`: 위 아래로 추가로 렌더링할 요소의 개수
+
+---
+
+**관련 문서**
+
+구현 과정을 기록한 문서입니다.
+
+[Windowing 직접 구현하기](https://velog.io/@dahyeon405/Windowing-%EC%A7%81%EC%A0%91-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)

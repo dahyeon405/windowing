@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <FixedSizeList scrollTarget={window} top={0} itemHeight={200} itemData={data} overscanCount={3}>
+      <FixedSizeList scrollTarget={window} top={0} itemHeight={200} itemData={data} overscanCount={2}>
         <Item />
       </FixedSizeList>
     </div>
