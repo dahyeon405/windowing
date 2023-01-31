@@ -1,9 +1,9 @@
 import React, { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 import { RefObject } from "react";
-import useScrollDetector from "../useScrollDetector.ts";
-import useViewportHeight from "../useViewportSize.ts";
-import { calculateStartIndex, calculateRenderIndex } from "../utils.ts";
+import useScrollDetector from "../useScrollDetector";
+import useViewportHeight from "../useViewportSize";
+import { calculateStartIndex, calculateRenderIndex } from "../utils";
 
 interface FixedSizeListProps {
   scrollTarget: RefObject<any>;
