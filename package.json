@@ -14,7 +14,6 @@
     "type": "git",
     "url": "git+https://github.com/dahyeon405/windowing"
   },
-  "dependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "babel src/lib --out-dir dist --copy-files --extensions \".ts,.tsx\"",
@@ -40,17 +39,18 @@
     ]
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.12.1",
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/plugin-transform-typescript": "^7.20.13",
     "@babel/preset-env": "^7.20.2",
-    "@types/node": "^18.11.18",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
