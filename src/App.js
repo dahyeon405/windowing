@@ -1,4 +1,4 @@
-import FixedSizeList from "./FixedSizeList.tsx";
+import FixedSizeList from "./lib/components/FixedSizeList.tsx";
 import Item from "./Item.tsx";
 
 function App() {
