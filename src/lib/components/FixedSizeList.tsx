@@ -6,7 +6,7 @@ import useViewportHeight from "../useViewportSize";
 import { calculateStartIndex, calculateRenderIndex } from "../utils";
 
 interface FixedSizeListProps {
-  scrollTarget: RefObject<any>;
+  scrollTarget?: RefObject<any>;
   top: number;
   itemHeight: number;
   children: React.ReactElement;
@@ -17,7 +17,7 @@ interface FixedSizeListProps {
 }
 
 export default function FixedSizeList({
-  scrollTarget,
+  scrollTarget = undefined,
   top,
   itemHeight,
   children,
