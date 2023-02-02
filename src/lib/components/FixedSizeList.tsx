@@ -63,7 +63,7 @@ export default function FixedSizeList({
             "div",
             {
               key: realIndex,
-              style: { height: `${itemHeight}px`, top: `${calculatedTop}px`, position: "absolute" },
+              style: { height: `${itemHeight}px`, width: "100%", top: `${calculatedTop}px`, position: "absolute" },
             },
             React.cloneElement(children, {
               data: data,
