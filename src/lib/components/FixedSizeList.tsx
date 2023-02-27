@@ -1,12 +1,12 @@
 import React, { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 import { RefObject } from "react";
-import useScrollDetector from "./useScrollDetector.ts";
-import useViewportHeight from "./useViewportSize.ts";
-import { calculateStartIndex, calculateRenderIndex } from "./utils.ts";
+import useScrollDetector from "../useScrollDetector";
+import useViewportHeight from "../useViewportSize";
+import { calculateStartIndex, calculateRenderIndex } from "../utils";
 
 interface FixedSizeListProps {
-  scrollTarget: RefObject<any>;
+  scrollTarget?: RefObject<any>;
   top: number;
   itemHeight: number;
   children: React.ReactElement;
@@ -17,7 +17,7 @@ interface FixedSizeListProps {
 }
 
 export default function FixedSizeList({
-  scrollTarget,
+  scrollTarget = undefined,
   top,
   itemHeight,
   children,
@@ -63,7 +63,7 @@ export default function FixedSizeList({
             "div",
             {
               key: realIndex,
-              style: { height: `${itemHeight}px`, top: `${calculatedTop}px`, position: "absolute" },
+              style: { height: `${itemHeight}px`, width: "100%", top: `${calculatedTop}px`, position: "absolute" },
             },
             React.cloneElement(children, {
               data: data,
