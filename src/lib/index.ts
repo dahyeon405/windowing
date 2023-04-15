@@ -1,3 +1,1 @@
-import FixedSizeList from "./components/FixedSizeList";
-
-export { FixedSizeList };
+export { FixedSizeList } from "./components";

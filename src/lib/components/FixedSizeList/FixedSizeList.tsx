@@ -1,12 +1,10 @@
 import React, { CSSProperties } from "react";
 import { useEffect, useState } from "react";
-import { RefObject } from "react";
-import useScrollDetector from "../useScrollDetector";
-import useViewportHeight from "../useViewportSize";
-import { calculateStartIndex, calculateRenderIndex } from "../utils";
+import { useScrollDetector, useViewportHeight } from "../../hooks";
+import { calculateRenderIndex } from "../../utils";
 
 interface FixedSizeListProps {
-  scrollTarget?: RefObject<any>;
+  scrollTarget: HTMLElement | Window;
   top: number;
   itemHeight: number;
   children: React.ReactElement;
@@ -17,7 +15,7 @@ interface FixedSizeListProps {
 }
 
 export default function FixedSizeList({
-  scrollTarget = undefined,
+  scrollTarget = window,
   top,
   itemHeight,
   children,
@@ -26,36 +24,38 @@ export default function FixedSizeList({
   style,
 }: FixedSizeListProps) {
   const curScrollPos = useScrollDetector(scrollTarget);
-  const viewportSize = useViewportHeight();
+  const viewportHeight = useViewportHeight();
+
+  const itemCount = itemData.length;
   const [renderIndex, setRenderIndex] = useState({
     renderStartIndex: 0,
-    renderEndIndex: itemData.length,
+    renderEndIndex: itemCount,
   });
   const [indexOffset, setIndexOffset] = useState(0);
   const [renderItem, setRenderItem] = useState<Array<any>>([]);
 
   useEffect(() => {
-    if (viewportSize === 0) return;
-    const renderItemCount = Math.ceil(viewportSize / itemHeight) + 1;
-    const startIndex = calculateStartIndex({ top, itemHeight, curScrollPos, viewportSize });
+    if (viewportHeight === 0) return;
     const newRenderIndex = calculateRenderIndex({
-      startIndex,
-      renderItemCount,
-      itemCount: itemData.length,
+      top,
+      itemHeight,
+      curScrollPos,
+      viewportHeight,
+      itemCount,
       overscanCount,
     });
     if (JSON.stringify(renderIndex) !== JSON.stringify(newRenderIndex)) setRenderIndex(newRenderIndex);
-  }, [curScrollPos, viewportSize]);
+  }, [curScrollPos, viewportHeight]);
 
   useEffect(() => {
     const { renderStartIndex, renderEndIndex } = renderIndex;
     setIndexOffset(renderStartIndex);
-    setRenderItem(itemData.slice(renderStartIndex, renderEndIndex));
+    setRenderItem(itemData.slice(renderStartIndex, renderEndIndex + 1));
   }, [renderIndex]);
 
   return (
     <div style={style}>
-      <div style={{ position: "relative", height: `${itemData.length * itemHeight}px` }}>
+      <div style={{ position: "relative", height: `${itemCount * itemHeight}px` }}>
         {renderItem.map((data, index) => {
           const realIndex = indexOffset + index;
           const calculatedTop = realIndex * itemHeight;
