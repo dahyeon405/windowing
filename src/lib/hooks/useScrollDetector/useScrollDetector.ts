@@ -1,31 +1,30 @@
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export const useScrollDetector = (element?: RefObject<HTMLDivElement>) => {
+export const useScrollDetector = (element: HTMLElement | Window) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [throttle, setThrottle] = useState(false);
 
   useEffect(() => {
-    const target = element && element.current ? element.current : window;
-    const updateScrollPosition = (target: HTMLElement | Window) => {
-      if (target === window) setScrollPosition(window.scrollY);
-      else setScrollPosition((target as HTMLElement).scrollTop);
+    const updateScrollPosition = (element: HTMLElement | Window) => {
+      if (element === window) setScrollPosition(window.scrollY);
+      else setScrollPosition((element as HTMLElement).scrollTop);
     };
 
     const onScroll = () => {
       if (throttle) return;
       setThrottle(true);
       setTimeout(() => {
-        updateScrollPosition(target);
+        updateScrollPosition(element);
         setThrottle(false);
       }, 300);
     };
 
-    target.addEventListener("scroll", onScroll);
+    element.addEventListener("scroll", onScroll);
 
     return () => {
-      if (target) target.removeEventListener("scroll", onScroll);
+      if (element) element.removeEventListener("scroll", onScroll);
     };
-  }, [element?.current]);
+  }, [element]);
 
   return scrollPosition;
 };
