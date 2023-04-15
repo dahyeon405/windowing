@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useViewportHeight = () => {
+export const useViewportHeight = () => {
   const [throttle, setThrottle] = useState(false);
   const [viewportSize, setViewportSize] = useState(0);
 
@@ -21,5 +21,3 @@ const useViewportHeight = () => {
 
   return viewportSize;
 };
-
-export default useViewportHeight;

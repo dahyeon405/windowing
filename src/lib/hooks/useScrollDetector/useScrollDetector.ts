@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useState } from "react";
 
-const useScrollDetector = (element?: RefObject<HTMLDivElement>) => {
+export const useScrollDetector = (element?: RefObject<HTMLDivElement>) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [throttle, setThrottle] = useState(false);
 
@@ -29,5 +29,3 @@ const useScrollDetector = (element?: RefObject<HTMLDivElement>) => {
 
   return scrollPosition;
 };
-
-export default useScrollDetector;
